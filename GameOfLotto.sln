@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOfLotto.Console", "GameOfLotto.Console\GameOfLotto.Console.csproj", "{70AD3052-E326-42CA-8A3D-8ADECF0CE8B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOfLotto.Domain", "GameOfLotto.Domain\GameOfLotto.Domain.csproj", "{1219D23C-0052-4634-81E3-DD3F6C0D62B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOfLotto.Domain.Tests", "GameOfLotto.Domain.Tests\GameOfLotto.Domain.Tests.csproj", "{A9449B38-D6F0-4550-B4C1-FAB3D0052D15}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{70AD3052-E326-42CA-8A3D-8ADECF0CE8B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70AD3052-E326-42CA-8A3D-8ADECF0CE8B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70AD3052-E326-42CA-8A3D-8ADECF0CE8B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70AD3052-E326-42CA-8A3D-8ADECF0CE8B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1219D23C-0052-4634-81E3-DD3F6C0D62B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1219D23C-0052-4634-81E3-DD3F6C0D62B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1219D23C-0052-4634-81E3-DD3F6C0D62B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1219D23C-0052-4634-81E3-DD3F6C0D62B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9449B38-D6F0-4550-B4C1-FAB3D0052D15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9449B38-D6F0-4550-B4C1-FAB3D0052D15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9449B38-D6F0-4550-B4C1-FAB3D0052D15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9449B38-D6F0-4550-B4C1-FAB3D0052D15}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

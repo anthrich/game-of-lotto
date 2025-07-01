@@ -1,11 +1,20 @@
-﻿namespace GameOfLotto.Domain.Tests;
+﻿using Force.DeepCloner;
+
+namespace GameOfLotto.Domain.Tests;
 
 public class InMemoryPlayerRepository : IPlayerRepository
 {
-    public List<Player> Saved { get; } = [];
+    public List<Player> Saved { get; private set; } = [];
 
     public void Save(Player player)
     {
-        Saved.Add(player);
+        var copiedPlayer = player.DeepClone();
+        Saved = Saved.Where(p => p.Id != player.Id).ToList();
+        Saved.Add(copiedPlayer);
+    }
+
+    public Player GetById(Guid id)
+    {
+        return Saved.First(p => p.Id == id).DeepClone();
     }
 }

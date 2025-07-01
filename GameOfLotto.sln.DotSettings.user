@@ -1,4 +1,5 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AExtensions_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003FUsers_003FUser_003FAppData_003FRoaming_003FJetBrains_003FRider2024_002E3_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003F14ec9bc2928a498d971dcbd17574fb691600_003F94_003F64c9a363_003FExtensions_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4bc9bc6b_002D7aff_002D4628_002Da41a_002D73cf1abd146e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="WhenCreatingAGame" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::A9449B38-D6F0-4550-B4C1-FAB3D0052D15::net8.0::GameOfLotto.Domain.Tests.WhenCreatingAGame&lt;/TestId&gt;&#xD;
@@ -8,5 +9,6 @@
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::A9449B38-D6F0-4550-B4C1-FAB3D0052D15::net8.0::GameOfLotto.Domain.Tests.WhenCreatingAGame&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::A9449B38-D6F0-4550-B4C1-FAB3D0052D15::net8.0::GameOfLotto.Domain.Tests.WhenAddingAPlayer&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::A9449B38-D6F0-4550-B4C1-FAB3D0052D15::net8.0::GameOfLotto.Domain.Tests.WhenPurchasingTickets&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

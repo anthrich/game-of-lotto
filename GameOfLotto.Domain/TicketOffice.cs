@@ -5,7 +5,10 @@ public class TicketOffice(IPlayerRepository repository)
     public void Purchase(Guid playerId, uint numberOfTickets)
     {
         var player = repository.GetById(playerId);
-        player.AddTicket(new Ticket(Guid.NewGuid()));
+        for (var i = 0; i < numberOfTickets; i++)
+        {
+            player.AddTicket(new Ticket(Guid.NewGuid()));
+        }
         repository.Save(player);
     }
 }

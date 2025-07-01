@@ -15,14 +15,17 @@ public class WhenPurchasingTickets
         _ticketOffice = new TicketOffice(_playerRepository);
     }
 
-    [Fact]
-    public void The_player_will_receive_a_single_ticket()
+    [Theory]
+    [InlineData(1)]
+    [InlineData(5)]
+    [InlineData(10)]
+    public void The_player_will_receive_the_correct_amount_of_tickets(uint numberOfTickets)
     {
         // Act
-        _ticketOffice.Purchase(_player.Id, 1);
+        _ticketOffice.Purchase(_player.Id, numberOfTickets);
         
         // Assert
-        var persistedPlayer = _playerRepository.Saved[0];
-        Assert.Single(persistedPlayer.Tickets);
+        var persistedPlayer = _playerRepository.GetById(_player.Id);
+        Assert.Equal((uint)persistedPlayer.Tickets.Count, numberOfTickets);
     }
 }

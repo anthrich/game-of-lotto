@@ -4,6 +4,7 @@ public class WhenAddingAPlayer
 {
     private readonly InMemoryPlayerRepository _playerRepository;
     private readonly PlayerManifest _playerManifest;
+    private readonly Game _game = new(Guid.NewGuid());
 
     public WhenAddingAPlayer()
     {
@@ -12,28 +13,36 @@ public class WhenAddingAPlayer
     }
 
     [Fact]
+    public void It_sets_the_players_name()
+    {
+        // Act
+        var newPlayer = _playerManifest.AddPlayer("Player 1", _game);
+        
+        // Assert
+        Assert.Equal("Player 1", newPlayer.Name);
+    }
+    
+    [Fact]
+    public void It_adds_the_game_to_the_players_games()
+    {
+        // Act
+        var player = _playerManifest.AddPlayer("Player 1", _game);
+        
+        // Assert
+        Assert.Contains(player.GameIds, gId => gId == _game.Id);
+    }
+
+    [Fact]
     public void It_persists_the_player()
     {
         // Act
-        _playerManifest.AddPlayer("Player 1", new Game());
+        _playerManifest.AddPlayer("Player 1", _game);
         
         // Assert
-        var expected = new Player("Player 1");
+        var expected = new { Name = "Player 1", GameIds = new List<Guid> { _game.Id } };
         var actual = _playerRepository.Saved[0];
         Assert.Equivalent(expected, actual);
     }
 
-    [Fact]
-    public void It_adds_the_game_to_the_players_games()
-    {
-        // Arrange
-        var game = new Game(Guid.NewGuid());
-        
-        // Act
-        _playerManifest.AddPlayer("Player 1", game);
-        
-        // Assert
-        var player = _playerRepository.Saved[0];
-        Assert.Contains(player.GameIds, gId => gId == game.Id);
-    }
+
 }

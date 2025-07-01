@@ -2,8 +2,10 @@
 
 public class PlayerManifest(IPlayerRepository repository)
 {
-    public void AddPlayer(string name)
+    public void AddPlayer(string name, Game game)
     {
-        repository.Save(new Player(name));
+        var player = new Player(name);
+        player.AddGame(game.Id);
+        repository.Save(player);
     }
 }

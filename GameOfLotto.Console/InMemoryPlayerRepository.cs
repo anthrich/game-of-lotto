@@ -1,6 +1,7 @@
 ﻿using Force.DeepCloner;
+using GameOfLotto.Domain;
 
-namespace GameOfLotto.Domain.Tests;
+namespace GameOfLotto;
 
 public class InMemoryPlayerRepository : IPlayerRepository
 {

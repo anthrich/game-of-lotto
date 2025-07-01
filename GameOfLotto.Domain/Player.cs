@@ -16,4 +16,9 @@ public class Player(string name, Guid id = default)
     {
         Tickets.Add(ticket);
     }
+
+    public override string ToString()
+    {
+        return Name;
+    }
 };

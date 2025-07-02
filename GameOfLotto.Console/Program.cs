@@ -27,7 +27,7 @@ foreach (var cpuPlayer in cpuPlayers)
 var players = playerRepo.Get();
 
 Console.WriteLine();
-Console.WriteLine($"Players:");
+Console.WriteLine("Players:");
 Console.WriteLine();
 
 foreach (var player in players)
@@ -44,7 +44,9 @@ Console.WriteLine($"* Grand Prize: {result.GrandPrize}");
 Console.WriteLine($"* Second Tier: {result.SecondTier}");
 Console.WriteLine($"* Third Tier: {result.ThirdTier}");
 Console.WriteLine();
-Console.WriteLine($"Congratulations to the winners!");
+Console.WriteLine("Congratulations to the winners!");
+Console.WriteLine();
+Console.WriteLine($"House Revenue: {result.HouseRevenue}");
 Console.WriteLine();
 Console.WriteLine("Press any key to continue...");
 Console.ReadKey();

@@ -2,5 +2,8 @@
 
 public record Amount(string Currency, decimal Value)
 {
-    public Amount() : this("USD", 0) { }
+    public static Amount operator -(Amount a, Amount b)
+    {
+        return a with { Value = a.Value - b.Value };
+    }
 };

@@ -16,6 +16,7 @@ public class Player(string name, Amount balance, Guid id = default)
     internal void AddTicket(Ticket ticket)
     {
         Tickets.Add(ticket);
+        Balance -= ticket.Cost;
     }
 
     public override string ToString()

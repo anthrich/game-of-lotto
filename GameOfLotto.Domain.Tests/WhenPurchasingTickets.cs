@@ -9,7 +9,7 @@ public class WhenPurchasingTickets
 
     public WhenPurchasingTickets()
     {
-        _player = new Player("Player 1", new Amount(), Guid.NewGuid());
+        _player = new Player("Player 1", new Amount("USD", 10), Guid.NewGuid());
         _playerRepository = new InMemoryPlayerRepository();
         _playerRepository.Save(_player);
         _ticketOffice = new TicketOffice(_playerRepository);
@@ -27,5 +27,19 @@ public class WhenPurchasingTickets
         // Assert
         var persistedPlayer = _playerRepository.GetById(_player.Id);
         Assert.Equal((uint)persistedPlayer.Tickets.Count, numberOfTickets);
+    }
+    
+    [Theory]
+    [InlineData(1)]
+    [InlineData(5)]
+    [InlineData(10)]
+    public void The_player_will_have_their_balance_reduced(uint numberOfTickets)
+    {
+        // Act
+        _ticketOffice.Purchase(_player.Id, numberOfTickets);
+        
+        // Assert
+        var persistedPlayer = _playerRepository.GetById(_player.Id);
+        Assert.Equal(new Amount("USD", 10 - numberOfTickets), persistedPlayer.Balance);
     }
 }

@@ -90,6 +90,16 @@ public class WhenRunningTheGame
         var winners = GetThirdTierWinners();
         Assert.Equivalent(winners.Select(w => w.Key), result.ThirdTier.Winners);
     }
+    
+    [Fact]
+    public void The_third_tier_prize_will_be_10_percent_of_the_ticket_revenue_split_between_four()
+    {
+        // Act
+        var result = _game.Run(_playerRepo, Seed);
+        
+        // Assert
+        Assert.Equal(new Amount("USD", 0.5m), result.ThirdTier.Value);
+    }
 
     private (Player, Ticket) GetGrandPrizeWinner()
     {

@@ -17,11 +17,12 @@ public class Game(Guid id = default)
         var secondTierAmount = allTickets.Sum(t => t.Cost.Value) * 0.3m / secondTierCohort;
         var thirdTierCohort = Math.Round(allTickets.Count * 0.2m);
         var thirdTierWinners = RunTier(thirdTierCohort, rng, ticketsInPlay, players);
+        var thirdTierAmount = allTickets.Sum(t => t.Cost.Value) * 0.1m / thirdTierCohort;
         
         return new Result(
             new Prize([grandPrize.Player], new Amount("USD", grandPrizeAmount)),
             new Prize(secondTierWinners.ToArray(), new Amount("USD", secondTierAmount)),
-            new Prize(thirdTierWinners.ToArray(), new Amount("USD", 0))
+            new Prize(thirdTierWinners.ToArray(), new Amount("USD", thirdTierAmount))
         );
     }
 

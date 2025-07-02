@@ -36,4 +36,16 @@ public class WhenAddingCpuPlayers
         var players = _playerRepository.Get();
         Assert.Equivalent(players, result);
     }
+
+    [Fact]
+    public void It_adds_the_correct_game_to_the_players()
+    {
+        // Act
+        _playerManifest.AddCpuPlayers("Player", 15);
+        
+        // Assert
+        var players = _playerRepository.Get();
+        var playersHaveGameId = players.All(p => p.GameIds.Contains(_game.Id));
+        Assert.True(playersHaveGameId);
+    }
 }

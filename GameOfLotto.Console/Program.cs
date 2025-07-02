@@ -5,21 +5,33 @@ using GameOfLotto.Domain;
 
 var game = new Game();
 var playerRepo = new InMemoryPlayerRepository();
-var playerManifest = new PlayerManifest(playerRepo);
+var playerManifest = new PlayerManifest(playerRepo, game);
 var ticketOffice = new TicketOffice(playerRepo);
-var player = playerManifest.AddPlayer("Player 1", game);
+var humanPlayer = playerManifest.AddPlayer("Player 1");
+var random = new Random();
 
-Console.WriteLine($"Welcome to the GameOfLotto, {player}!");
+Console.WriteLine($"Welcome to the GameOfLotto, {humanPlayer}!");
 Console.WriteLine();
-Console.WriteLine($"How many tickets do you want to buy, {player}?");
+Console.WriteLine($"How many tickets do you want to buy, {humanPlayer}?");
 
 var ticketCount = Convert.ToUInt32(Console.ReadLine());
 
-ticketOffice.Purchase(player.Id, ticketCount);
+ticketOffice.Purchase(humanPlayer.Id, ticketCount);
 
-player = playerRepo.GetById(player.Id);
+playerManifest.AddCpuPlayers("CPU", random.Next(9, 14));
 
-Console.WriteLine($"{player} has {player.Tickets.Count} tickets");
+var players = playerRepo.Get();
 
 Console.WriteLine();
+Console.WriteLine($"Players:");
+Console.WriteLine();
+
+foreach (var player in players)
+{
+    Console.WriteLine($"{player} has {player.Tickets.Count} tickets");
+}
+
+Console.WriteLine();
+Console.WriteLine("Press any key to continue...");
+Console.ReadKey();
 

@@ -9,14 +9,14 @@ public class WhenAddingAPlayer
     public WhenAddingAPlayer()
     {
         _playerRepository = new InMemoryPlayerRepository();
-        _playerManifest = new PlayerManifest(_playerRepository);
+        _playerManifest = new PlayerManifest(_playerRepository, _game);
     }
 
     [Fact]
     public void It_sets_the_players_name()
     {
         // Act
-        var newPlayer = _playerManifest.AddPlayer("Player 1", _game);
+        var newPlayer = _playerManifest.AddPlayer("Player 1");
         
         // Assert
         Assert.Equal("Player 1", newPlayer.Name);
@@ -26,7 +26,7 @@ public class WhenAddingAPlayer
     public void It_adds_the_game_to_the_players_games()
     {
         // Act
-        var player = _playerManifest.AddPlayer("Player 1", _game);
+        var player = _playerManifest.AddPlayer("Player 1");
         
         // Assert
         Assert.Contains(player.GameIds, gId => gId == _game.Id);
@@ -36,7 +36,7 @@ public class WhenAddingAPlayer
     public void It_persists_the_player()
     {
         // Act
-        _playerManifest.AddPlayer("Player 1", _game);
+        _playerManifest.AddPlayer("Player 1");
         
         // Assert
         var expected = new { Name = "Player 1", GameIds = new List<Guid> { _game.Id } };

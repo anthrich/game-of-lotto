@@ -1,8 +1,8 @@
 ﻿namespace GameOfLotto.Domain;
 
-public class PlayerManifest(IPlayerRepository repository)
+public class PlayerManifest(IPlayerRepository repository, Game game)
 {
-    public Player AddPlayer(string name, Game game)
+    public Player AddPlayer(string name)
     {
         var player = new Player(name);
         player.AddGame(game.Id);
@@ -10,11 +10,11 @@ public class PlayerManifest(IPlayerRepository repository)
         return player;
     }
 
-    public void AddCpuPlayers(string name, Game game, int numberOfCpuPlayers)
+    public void AddCpuPlayers(string name, int numberOfCpuPlayers)
     {
-        for (int i = 0; i < numberOfCpuPlayers; i++)
+        for (var i = 0; i < numberOfCpuPlayers; i++)
         {
-            AddPlayer(name + " " + i, game);
+            AddPlayer(name + " " + i);
         }
     }
 }

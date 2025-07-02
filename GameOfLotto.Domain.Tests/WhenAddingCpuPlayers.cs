@@ -9,7 +9,7 @@ public class WhenAddingCpuPlayers
     public WhenAddingCpuPlayers()
     {
         _playerRepository = new InMemoryPlayerRepository();
-        _playerManifest = new PlayerManifest(_playerRepository);
+        _playerManifest = new PlayerManifest(_playerRepository, _game);
     }
 
     [Theory]
@@ -19,7 +19,7 @@ public class WhenAddingCpuPlayers
     public void It_adds_the_correct_number_of_players(int numberOfPlayers)
     {
         // Act
-        _playerManifest.AddCpuPlayers("Player", _game, numberOfPlayers);
+        _playerManifest.AddCpuPlayers("Player", numberOfPlayers);
         
         // Assert
         var players = _playerRepository.Get();

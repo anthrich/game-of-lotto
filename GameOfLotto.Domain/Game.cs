@@ -50,11 +50,6 @@ public class Game(Guid id = default)
         return new PrizeAward(prizeWinner, prizeTicket);
     }
 
-    public IList<object> GetPlayers()
-    {
-        return [];
-    }
-
     public record Result(Prize GrandPrize, Prize SecondTier, Prize ThirdTier, Amount HouseRevenue);
 
     public record Prize(Player[] Winners, Amount Value)

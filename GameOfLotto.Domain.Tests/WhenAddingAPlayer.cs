@@ -43,6 +43,4 @@ public class WhenAddingAPlayer
         var actual = _playerRepository.Saved[0];
         Assert.Equivalent(expected, actual);
     }
-
-
 }

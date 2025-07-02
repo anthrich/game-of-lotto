@@ -2,7 +2,7 @@
 
 public class Player(string name, Guid id = default)
 {
-    public Guid Id { get; private set; } = id;
+    public Guid Id { get; set; } = id;
     public string Name { get; private set; }= name;
     public List<Guid> GameIds { get; private set; }= [];
     public List<Ticket> Tickets { get; private set; } = [];

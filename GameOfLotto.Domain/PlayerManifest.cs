@@ -9,4 +9,12 @@ public class PlayerManifest(IPlayerRepository repository)
         repository.Save(player);
         return player;
     }
+
+    public void AddCpuPlayers(string name, Game game, int numberOfCpuPlayers)
+    {
+        for (int i = 0; i < numberOfCpuPlayers; i++)
+        {
+            AddPlayer(name + " " + i, game);
+        }
+    }
 }

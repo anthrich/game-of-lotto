@@ -10,5 +10,6 @@
     &lt;TestId&gt;xUnit::A9449B38-D6F0-4550-B4C1-FAB3D0052D15::net8.0::GameOfLotto.Domain.Tests.WhenCreatingAGame&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::A9449B38-D6F0-4550-B4C1-FAB3D0052D15::net8.0::GameOfLotto.Domain.Tests.WhenAddingAPlayer&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::A9449B38-D6F0-4550-B4C1-FAB3D0052D15::net8.0::GameOfLotto.Domain.Tests.WhenPurchasingTickets&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::A9449B38-D6F0-4550-B4C1-FAB3D0052D15::net8.0::GameOfLotto.Domain.Tests.WhenAddingCpuPlayers&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

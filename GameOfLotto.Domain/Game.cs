@@ -55,7 +55,15 @@ public class Game(Guid id = default)
 
     public record Result(Prize GrandPrize, Prize SecondTier, Prize ThirdTier);
 
-    public record Prize(Player[] Winners, Amount Value);
+    public record Prize(Player[] Winners, Amount Value)
+    {
+        public override string ToString()
+        {
+            var winString = Winners.Length > 1 ? "win" : "wins";
+            var eachString = Winners.Length > 1 ? " each" : "";
+            return $"{string.Join(", ", Winners.Select(w => w.Name))} {winString} {Value}{eachString}!";
+        }
+    };
     
     private record PrizeAward(Player Player, Ticket Ticket);
 }

@@ -35,6 +35,16 @@ foreach (var player in players)
     Console.WriteLine(player.ToString());
 }
 
+var result = game.Run(playerRepo, random.Next());
+
+Console.WriteLine();
+Console.WriteLine("Ticket draw results:");
+Console.WriteLine();
+Console.WriteLine($"* Grand Prize: {result.GrandPrize}");
+Console.WriteLine($"* Second Tier: {result.SecondTier}");
+Console.WriteLine($"* Third Tier: {result.ThirdTier}");
+Console.WriteLine();
+Console.WriteLine($"Congratulations to the winners!");
 Console.WriteLine();
 Console.WriteLine("Press any key to continue...");
 Console.ReadKey();

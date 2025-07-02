@@ -42,4 +42,18 @@ public class WhenPurchasingTickets
         var persistedPlayer = _playerRepository.GetById(_player.Id);
         Assert.Equal(new Amount("USD", 10 - numberOfTickets), persistedPlayer.Balance);
     }
+    
+    [Theory]
+    [InlineData(100)]
+    [InlineData(50)]
+    [InlineData(11)]
+    public void The_player_can_not_buy_more_than_their_balance_allows(uint numberOfTickets)
+    {
+        // Act
+        _ticketOffice.Purchase(_player.Id, numberOfTickets);
+        
+        // Assert
+        var persistedPlayer = _playerRepository.GetById(_player.Id);
+        Assert.Equal(10, persistedPlayer.Tickets.Count);
+    }
 }

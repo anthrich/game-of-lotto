@@ -9,9 +9,19 @@ public record Amount(string Currency, decimal Value)
         { "USD", CultureInfo.GetCultureInfo("en-US") },
     };
     
-    public static Amount operator -(Amount a, Amount b)
+    public static Amount operator-(Amount a, Amount b)
     {
         return a with { Value = a.Value - b.Value };
+    }
+
+    public static bool operator >=(Amount a, Amount b)
+    {
+        return a.Value >= b.Value;
+    }
+
+    public static bool operator <=(Amount a, Amount b)
+    {
+        return a.Value <= b.Value;
     }
 
     public override string ToString()

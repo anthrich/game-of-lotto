@@ -13,10 +13,16 @@ public class Player(string name, Amount balance, Guid id = default)
         GameIds.Add(gameId);
     }
 
-    internal void AddTicket(Ticket ticket)
+    internal bool BuyTicket(Ticket ticket)
     {
-        Tickets.Add(ticket);
-        Balance -= ticket.Cost;
+        if (Balance >= ticket.Cost)
+        {
+            Tickets.Add(ticket);
+            Balance -= ticket.Cost;
+            return true;
+        }
+        
+        return false;
     }
 
     public override string ToString()

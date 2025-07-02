@@ -8,7 +8,8 @@ public class TicketOffice(IPlayerRepository repository)
         
         for (var i = 0; i < numberOfTickets; i++)
         {
-            player.AddTicket(new Ticket(Guid.NewGuid(), new Amount("USD", 1)));
+            var ticketWasBought = player.BuyTicket(new Ticket(Guid.NewGuid(), new Amount("USD", 1)));
+            if(!ticketWasBought) break;
         }
         
         repository.Save(player);

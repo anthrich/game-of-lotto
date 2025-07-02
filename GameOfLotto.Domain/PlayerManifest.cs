@@ -10,11 +10,15 @@ public class PlayerManifest(IPlayerRepository repository, Game game)
         return player;
     }
 
-    public void AddCpuPlayers(string name, int numberOfCpuPlayers)
+    public IReadOnlyCollection<Player> AddCpuPlayers(string name, int numberOfCpuPlayers)
     {
+        var players = new List<Player>();
+        
         for (var i = 0; i < numberOfCpuPlayers; i++)
         {
-            AddPlayer(name + " " + i);
+            players.Add(AddPlayer(name + " " + i));
         }
+
+        return players;
     }
 }

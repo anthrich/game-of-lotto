@@ -1,12 +1,11 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-using GameOfLotto;
+﻿using GameOfLotto;
 using GameOfLotto.Domain;
 
 var game = new Game();
 var playerRepo = new InMemoryPlayerRepository();
 var playerManifest = new PlayerManifest(playerRepo, game);
 var ticketOffice = new TicketOffice(playerRepo);
+
 var humanPlayer = playerManifest.AddPlayer("Player 1");
 var random = new Random();
 

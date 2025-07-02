@@ -25,4 +25,15 @@ public class WhenAddingCpuPlayers
         var players = _playerRepository.Get();
         Assert.Equal(numberOfPlayers, players.Count);
     }
+
+    [Fact]
+    public void It_returns_the_new_players()
+    {
+        // Act
+        var result = _playerManifest.AddCpuPlayers("Player", 15);
+        
+        // Assert
+        var players = _playerRepository.Get();
+        Assert.Equivalent(players, result);
+    }
 }

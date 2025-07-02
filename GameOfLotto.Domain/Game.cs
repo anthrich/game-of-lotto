@@ -10,19 +10,21 @@ public class Game(Guid id = default)
         var allTickets = players.SelectMany(p => p.Tickets).ToList();
         var rng = new Random(seed);
         var grandPrize = GetPrize(rng, allTickets, players);
-        var grandPrizeAmount = allTickets.Sum(t => t.Cost.Value) * 0.5m;
         var secondTierCohort = Math.Round(allTickets.Count * 0.1m);
         var ticketsInPlay = allTickets.Except([grandPrize.Ticket]).ToList();
         var secondTierWinners = RunTier(secondTierCohort, rng, ticketsInPlay, players);
-        var secondTierAmount = allTickets.Sum(t => t.Cost.Value) * 0.3m / secondTierCohort;
         var thirdTierCohort = Math.Round(allTickets.Count * 0.2m);
         var thirdTierWinners = RunTier(thirdTierCohort, rng, ticketsInPlay, players);
-        var thirdTierAmount = allTickets.Sum(t => t.Cost.Value) * 0.1m / thirdTierCohort;
+        var totalRevenue = allTickets.Sum(t => t.Cost.Value);
+        var grandPrizeAmount = totalRevenue * 0.5m;
+        var secondTierAmount = totalRevenue * 0.3m;
+        var thirdTierAmount = totalRevenue * 0.1m;
         
         return new Result(
             new Prize([grandPrize.Player], new Amount("USD", grandPrizeAmount)),
-            new Prize(secondTierWinners.ToArray(), new Amount("USD", secondTierAmount)),
-            new Prize(thirdTierWinners.ToArray(), new Amount("USD", thirdTierAmount))
+            new Prize(secondTierWinners.ToArray(), new Amount("USD", secondTierAmount / secondTierCohort)),
+            new Prize(thirdTierWinners.ToArray(), new Amount("USD", thirdTierAmount / thirdTierCohort)),
+            new Amount("USD", totalRevenue - grandPrizeAmount - secondTierAmount - thirdTierAmount)
         );
     }
 
@@ -53,7 +55,7 @@ public class Game(Guid id = default)
         return [];
     }
 
-    public record Result(Prize GrandPrize, Prize SecondTier, Prize ThirdTier);
+    public record Result(Prize GrandPrize, Prize SecondTier, Prize ThirdTier, Amount HouseRevenue);
 
     public record Prize(Player[] Winners, Amount Value)
     {

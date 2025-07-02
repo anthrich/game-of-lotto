@@ -101,6 +101,16 @@ public class WhenRunningTheGame
         Assert.Equal(new Amount("USD", 0.5m), result.ThirdTier.Value);
     }
 
+    [Fact]
+    public void The_house_revenue_will_be_the_remaining_ticket_revenue()
+    {
+        // Act
+        var result = _game.Run(_playerRepo, Seed);
+        
+        // Assert
+        Assert.Equal(new Amount("USD", 2m), result.HouseRevenue);
+    }
+
     private (Player, Ticket) GetGrandPrizeWinner()
     {
         var winningTicket = _tickets[_winningTicketNumber - 1];

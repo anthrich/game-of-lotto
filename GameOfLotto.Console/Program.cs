@@ -17,7 +17,12 @@ var ticketCount = Convert.ToUInt32(Console.ReadLine());
 
 ticketOffice.Purchase(humanPlayer.Id, ticketCount);
 
-playerManifest.AddCpuPlayers("CPU", random.Next(9, 14));
+var cpuPlayers = playerManifest.AddCpuPlayers("CPU", random.Next(9, 14));
+
+foreach (var cpuPlayer in cpuPlayers)
+{
+    ticketOffice.Purchase(cpuPlayer.Id, (uint)random.Next(1, 10));
+}
 
 var players = playerRepo.Get();
 

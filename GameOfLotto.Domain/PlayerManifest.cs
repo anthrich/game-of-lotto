@@ -14,7 +14,7 @@ public class PlayerManifest(IPlayerRepository repository, Game game)
     {
         var players = new List<Player>();
         
-        for (var i = 0; i < numberOfCpuPlayers; i++)
+        for (var i = 1; i <= numberOfCpuPlayers; i++)
         {
             players.Add(AddPlayer(name + " " + i));
         }

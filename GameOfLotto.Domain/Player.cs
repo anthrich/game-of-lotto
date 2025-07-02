@@ -1,11 +1,12 @@
 ﻿namespace GameOfLotto.Domain;
 
-public class Player(string name, Guid id = default)
+public class Player(string name, Amount balance, Guid id = default)
 {
     public Guid Id { get; set; } = id;
-    public string Name { get; private set; }= name;
-    public List<Guid> GameIds { get; private set; }= [];
+    public string Name { get; private set; } = name;
+    public List<Guid> GameIds { get; private set; } = [];
     public List<Ticket> Tickets { get; private set; } = [];
+    public Amount Balance { get; private set; } = balance;
 
     internal void AddGame(Guid gameId)
     {

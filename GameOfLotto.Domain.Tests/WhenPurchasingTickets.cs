@@ -9,7 +9,7 @@ public class WhenPurchasingTickets
 
     public WhenPurchasingTickets()
     {
-        _player = new Player("Player 1", Guid.NewGuid());
+        _player = new Player("Player 1", new Amount(), Guid.NewGuid());
         _playerRepository = new InMemoryPlayerRepository();
         _playerRepository.Save(_player);
         _ticketOffice = new TicketOffice(_playerRepository);

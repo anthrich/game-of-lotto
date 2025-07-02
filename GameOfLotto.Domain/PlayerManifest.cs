@@ -4,7 +4,7 @@ public class PlayerManifest(IPlayerRepository repository, Game game)
 {
     public Player AddPlayer(string name)
     {
-        var player = new Player(name);
+        var player = new Player(name, new Amount("USD", 10));
         player.AddGame(game.Id);
         repository.Save(player);
         return player;

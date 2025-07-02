@@ -33,6 +33,16 @@ public class WhenAddingAPlayer
     }
 
     [Fact]
+    public void It_sets_their_balance_to_10_dollars()
+    {
+        // Act
+        var player = _playerManifest.AddPlayer("Player 1");
+        
+        // Assert
+        Assert.Equal(new Amount("USD", 10), player.Balance);
+    }
+
+    [Fact]
     public void It_persists_the_player()
     {
         // Act

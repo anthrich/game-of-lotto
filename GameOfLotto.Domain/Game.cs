@@ -12,7 +12,8 @@ public class Game(Guid id = default)
         var grandPrize = rng.Next(1, tickets.Length);
         var winningTicket = tickets.ElementAt(grandPrize - 1);
         var grandPrizeWinner = players.First(p => p.Tickets.Contains(winningTicket));
-        return new Result(new Prize([grandPrizeWinner], new Amount("USD", 0)));
+        var grandPrizeAmount = tickets.Sum(t => t.Cost.Value) * 0.5m;
+        return new Result(new Prize([grandPrizeWinner], new Amount("USD", grandPrizeAmount)));
     }
 
     public IList<object> GetPlayers()

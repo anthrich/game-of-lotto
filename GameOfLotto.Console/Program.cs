@@ -11,7 +11,7 @@ var random = new Random();
 
 Console.WriteLine($"Welcome to the GameOfLotto, {humanPlayer}!");
 Console.WriteLine();
-Console.WriteLine($"How many tickets do you want to buy, {humanPlayer}?");
+Console.WriteLine($"How many tickets do you want to buy, {humanPlayer.Name}?");
 
 var ticketCount = Convert.ToUInt32(Console.ReadLine());
 
@@ -32,7 +32,7 @@ Console.WriteLine();
 
 foreach (var player in players)
 {
-    Console.WriteLine($"{player} has {player.Tickets.Count} tickets");
+    Console.WriteLine(player.ToString());
 }
 
 Console.WriteLine();

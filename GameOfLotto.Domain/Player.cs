@@ -21,6 +21,6 @@ public class Player(string name, Amount balance, Guid id = default)
 
     public override string ToString()
     {
-        return Name;
+        return $"{Name} has {Tickets.Count} tickets, and a balance of {Balance}";
     }
 };

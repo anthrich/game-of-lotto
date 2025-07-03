@@ -16,15 +16,17 @@ public class Game(Guid id = default)
         var thirdTierCohort = Math.Round(allTickets.Count * 0.2m);
         var thirdTierWinners = RunTier(thirdTierCohort, rng, ticketsInPlay, players);
         var totalRevenue = allTickets.Sum(t => t.Cost.Value);
-        var grandPrizeAmount = totalRevenue * 0.5m;
-        var secondTierAmount = totalRevenue * 0.3m;
-        var thirdTierAmount = totalRevenue * 0.1m;
+        var grandPrizeAmount = decimal.Round(totalRevenue * 0.5m, 2, MidpointRounding.ToZero);
+        var secondTierAmount = decimal.Round(totalRevenue * 0.3m / secondTierCohort, 2, MidpointRounding.ToZero);
+        var literalSecondTierTotal = secondTierAmount * secondTierCohort;
+        var thirdTierAmount = decimal.Round(totalRevenue * 0.1m / thirdTierCohort, 2, MidpointRounding.ToZero);
+        var literalThirdTierTotal = thirdTierAmount * thirdTierCohort;
         
         return new Result(
             new Prize([grandPrize.Player], new Amount("USD", grandPrizeAmount)),
-            new Prize(secondTierWinners.ToArray(), new Amount("USD", secondTierAmount / secondTierCohort)),
-            new Prize(thirdTierWinners.ToArray(), new Amount("USD", thirdTierAmount / thirdTierCohort)),
-            new Amount("USD", totalRevenue - grandPrizeAmount - secondTierAmount - thirdTierAmount)
+            new Prize(secondTierWinners.ToArray(), new Amount("USD", secondTierAmount)),
+            new Prize(thirdTierWinners.ToArray(), new Amount("USD", thirdTierAmount)),
+            new Amount("USD", totalRevenue - grandPrizeAmount - literalSecondTierTotal - literalThirdTierTotal)
         );
     }
 

@@ -10,18 +10,20 @@ public class WhenRunningTheGame
     private readonly int _winningTicketNumber;
     private readonly int[] _secondTierWinningTicketNumbers = [0, 0];
     private readonly int[] _thirdTierWinningTicketNumbers = [0, 0, 0, 0];
+    private readonly TicketOffice _ticketOffice;
+    private readonly PlayerManifest _playerManifest;
 
     public WhenRunningTheGame()
     {
         _game = new Game();
         _playerRepo = new InMemoryPlayerRepository();
-        var playerManifest = new PlayerManifest(_playerRepo, _game);
-        var ticketOffice = new TicketOffice(_playerRepo);
-        _players = playerManifest.AddCpuPlayers("Player", 10).ToArray();
+        _playerManifest = new PlayerManifest(_playerRepo, _game);
+        _ticketOffice = new TicketOffice(_playerRepo);
+        _players = _playerManifest.AddCpuPlayers("Player", 10).ToArray();
         
         foreach (var player in _players)
         {
-            ticketOffice.Purchase(player.Id, 2);
+            _ticketOffice.Purchase(player.Id, 2);
         }
 
         _players = _playerRepo.Get().ToArray();
@@ -109,6 +111,42 @@ public class WhenRunningTheGame
         
         // Assert
         Assert.Equal(new Amount("USD", 2m), result.HouseRevenue);
+    }
+    
+    [Fact]
+    public void Sub_penny_revenue_will_be_subtracted_from_the_prizes()
+    {
+        // Arrange
+        SetUp57Tickets();
+        
+        // Act
+        var result = _game.Run(_playerRepo, Seed);
+        
+        // Assert
+        Assert.Equal(new Amount("USD", 0.51m), result.ThirdTier.Value);
+    }
+    
+    [Fact]
+    public void Remaining_sub_penny_revenue_will_go_to_the_house()
+    {
+        // Arrange
+        SetUp57Tickets();
+        
+        // Act
+        var result = _game.Run(_playerRepo, Seed);
+        
+        // Assert
+        Assert.Equal(new Amount("USD", 5.79m), result.HouseRevenue);
+    }
+
+    private void SetUp57Tickets()
+    {
+        foreach (var player in _players)
+        {
+            _ticketOffice.Purchase(player.Id, 3);
+        }
+        var additionalPlayer = _playerManifest.AddCpuPlayers("Player", 1).First();
+        _ticketOffice.Purchase(additionalPlayer.Id, 7);
     }
 
     private (Player, Ticket) GetGrandPrizeWinner()
